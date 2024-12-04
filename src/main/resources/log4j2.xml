@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="JSON_LAYOUT_APPENDER" target="SYSTEM_OUT">
+            <JsonLayout complete="false" compact="true" eventEol="true">
+                <KeyValuePair key="timestamp" value="$${ctx:timestamp:-}"/>
+                <KeyValuePair key="zona horaria" value="$${ctx:timeZone:-}"/>
+                <KeyValuePair key="ip" value="$${ctx:ip:-}"/>
+                <KeyValuePair key="evento" value="$${ctx:event:-}"/>
+                <KeyValuePair key="geolocalizacion" value="$${ctx:location:-}"/>
+                <KeyValuePair key="correo" value="$${ctx:email:-}"/>
+                <KeyValuePair key="message" value="$${ctx:message:-}"/>
+            </JsonLayout>
+            <BurstFilter level="INFO" rate="2" maxBurst="10"/>
+        </Console>
+        <RollingFile name="RollingFile"
+                     fileName="D:/alianza/alianza.log"
+                     filePattern="D:/alianza/logs/$${date:yyyy-MM}/alianza-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy
+                        size="10 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingFile>
+        <File name="JSONLogfileAppender" fileName="D:/alianza/logfile.json">
+            <JsonLayout compact="true" eventEol="true"/>
+            <BurstFilter level="INFO" rate="2" maxBurst="10"/>
+        </File>
+        <Async name="AsyncAppender" bufferSize="80">
+            <AppenderRef ref="JSONLogfileAppender"/>
+        </Async>
+    </Appenders>
+    <Loggers>
+        <Logger name="ASYNC_JSON_FILE_APPENDER" level="INFO"
+                additivity="false">
+            <AppenderRef ref="AsyncAppender"/>
+        </Logger>
+        <Logger name="XML_ROLLING_FILE_APPENDER"
+                level="INFO" additivity="false">
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+        <Root level="INFO">
+            <AppenderRef ref="JSON_LAYOUT_APPENDER"/>
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="JSONLogfileAppender"/>
+        </Root>
+        <Logger name="com.johan.castro.alianza" level="trace">
+            <AppenderRef ref="JSON_LAYOUT_APPENDER"/>
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="JSONLogfileAppender"/>
+        </Logger>
+    </Loggers>
+</Configuration>
