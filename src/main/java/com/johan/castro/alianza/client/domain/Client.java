@@ -1,5 +1,7 @@
 package com.johan.castro.alianza.client.domain;
 
+import jakarta.validation.constraints.Pattern;
+
 import java.util.Date;
 
 public class Client {

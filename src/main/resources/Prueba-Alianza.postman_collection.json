@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "adccca84-1d03-4402-a054-1c17cdf179b0",
+		"name": "Prueba-Alianza",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7544559"
+	},
+	"item": [
+		{
+			"name": "All",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8006/alianza/client/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8006",
+					"path": [
+						"alianza",
+						"client",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllCurrent",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8006/alianza/client/allCurrentClients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8006",
+					"path": [
+						"alianza",
+						"client",
+						"allCurrentClients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AllRetired",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8006/alianza/client/allRetiredClients",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8006",
+					"path": [
+						"alianza",
+						"client",
+						"allRetiredClients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BySharedKey",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8006/alianza/client/jcastro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8006",
+					"path": [
+						"alianza",
+						"client",
+						"jcastro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewClient",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"name\": \"Nuevo Cliente\",\r\n        \"email\": \"nuevo.cliente@yptmail.com\",\r\n        \"phone\": \"3119876542\",\r\n        \"dateAdded\": \"2024-12-15\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8006/alianza/client/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8006",
+					"path": [
+						"alianza",
+						"client",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nuevo Usuario\",\r\n    \"email\": \"nuevo.usuario@yptmail.com\",\r\n    \"dateFinish\": \"2024-12-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8006/alianza/client/ncliente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8006",
+					"path": [
+						"alianza",
+						"client",
+						"ncliente"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
