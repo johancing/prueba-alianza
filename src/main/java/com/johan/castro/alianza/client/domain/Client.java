@@ -1,15 +1,22 @@
 package com.johan.castro.alianza.client.domain;
 
-import jakarta.validation.constraints.Pattern;
+import com.johan.castro.alianza.client.application.ApplicationException;
+import jakarta.validation.constraints.*;
 
 import java.util.Date;
 
 public class Client {
 
     private String sharedKey;
+    @NotBlank
+    @NotEmpty
+    @NotNull
     private String name;
+    @Email
     private String email;
+    @Pattern(regexp = "^[0-9]*$", message = "The phone should only contain numbers.")
     private String phone;
+    @FutureOrPresent
     private Date dateAdded;
     private Date dateFinish;
 
@@ -77,7 +84,7 @@ public class Client {
         }
         String[] parts = name.split(" ");
         if (parts.length < 2)
-            throw new IllegalArgumentException("name need two parts");
+            throw new ApplicationException("name need two parts");
         String sharedKey = parts[0].substring(0, 1) + parts[1];
         setSharedKey(sharedKey.toLowerCase());
     }

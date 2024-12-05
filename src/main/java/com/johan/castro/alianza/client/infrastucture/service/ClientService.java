@@ -1,5 +1,6 @@
 package com.johan.castro.alianza.client.infrastucture.service;
 
+import com.johan.castro.alianza.client.application.ApplicationException;
 import com.johan.castro.alianza.client.application.IClientService;
 import com.johan.castro.alianza.client.application.LoggerParams;
 import com.johan.castro.alianza.client.domain.Client;
@@ -61,7 +62,10 @@ public class ClientService implements IClientService {
 
     @Override
     public Client save(Client client) {
-        ClientEntity entity = ClientMapper.domainToEntity(client);
+        ClientEntity entity = repo.findBySharedKey(client.getSharedKey());
+        if (entity != null)
+            throw new ApplicationException("Client already exists");
+        entity = ClientMapper.domainToEntity(client);
         log.log(Level.INFO, "Save client with sharedKey " + client.getSharedKey());
         entity = repo.save(entity);
         return ClientMapper.entityToDomain(entity);
